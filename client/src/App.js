@@ -7,14 +7,12 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.state = { searchField: ''};
   }
 
-  handleChange(e){
-    this.setState({
-      searchField: e.target.value
-    });
+  handleInputChange(text){
+    this.setState({searchField: text});
   }
 
   /*
@@ -47,7 +45,7 @@ class App extends Component {
         </header>
         < SearchBar 
             value={searchFieldText} 
-            onInputChange={this.handleChange} />
+            onInputChange={this.handleInputChange} />
       </div>
     );
   }

@@ -8,9 +8,15 @@ class SearchBar extends Component {
 	constructor(props){
 		super(props);
 		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleSubmit(){
+		console.log('submit clicked');
 	}
 
 	handleChange(e) {
+		console.log(e.target.value);
 		this.props.onInputChange(e.target.value);
 	}
 
@@ -18,8 +24,10 @@ class SearchBar extends Component {
 		const searchFieldText = this.props.value;
 		return(
 			<div className="App-search">
-	          <input></input>
-	          <button></button>
+	          <input 
+	          	value={searchFieldText} 
+	          	onChange={this.handleChange} />
+	          <button onClick={this.handleSubmit}></button>
 	        </div>
         );
 	}
