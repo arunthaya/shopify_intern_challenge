@@ -12,7 +12,7 @@ class SearchBar extends Component {
 	}
 
 	handleSubmit(){
-		console.log('submit clicked');
+		this.props.onSearchSubmit();	
 	}
 
 	handleChange(e) {
@@ -27,7 +27,7 @@ class SearchBar extends Component {
 	          <input 
 	          	value={searchFieldText} 
 	          	onChange={this.handleChange} />
-	          <button onClick={this.handleSubmit}></button>
+	          <button onClick={this.handleSubmit}>Search</button>
 	        </div>
         );
 	}

@@ -22,6 +22,7 @@
 
 .App-search {
   position: relative;
+  height: 10vh;
 }
 
 
@@ -45,13 +46,19 @@ input:focus {
 
 button {
   margin-top: 20px;
-  margin-right: 50px;
+  margin-right: 20px;
   margin-left: 20px;
   margin-bottom: 20px;
   height: 100%;
-  width: 40px;
+  width: 74px;
+  border-radius: 3px;
+  outline: none;
 }
 
+.App-searchresults{
+  height: 45vh;
+  overflow: auto;
+}
 
 @media screen and (max-width:600px) {
   input {
