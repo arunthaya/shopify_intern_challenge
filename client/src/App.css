@@ -60,6 +60,23 @@ button {
   overflow: auto;
 }
 
+.Results-table{
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+table td,th {
+  padding: 15px;
+  vertical-align: top;
+}
+
+.Star {
+  padding-right: 0px;
+  font-size: larger;
+  cursor: pointer;
+}
+
 @media screen and (max-width:600px) {
   input {
     padding: 2px 2px;

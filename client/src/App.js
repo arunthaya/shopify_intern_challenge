@@ -1,38 +1,7 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
 import './App.css';
 import SearchBar from './Components/SearchBar';
-
-function SwitchComponent({text, stateConditional}){
-  console.log(text);
-  switch(stateConditional){
-    case 'error':
-      return <h3>{text.message}</h3>;
-    case 'isLoading':
-      return <h3>Loading</h3>;
-    case 'results':
-      return (
-        text.map( (number) => 
-          <TestList 
-            key={number._id} 
-            title={number.title}
-            textToDisplay={number.body}/>));
-    default:
-      return null;
-  }
-}
-
-
-function TestList(props){
-  return(
-    <React.Fragment>
-    <tr>
-      <td>{props.title}</td>
-      <td>{props.textToDisplay}</td>
-    </tr>
-    </React.Fragment>
-  );
-}
+import SearchResults from './Components/SearchResults';
 
 class App extends Component {
 
@@ -44,7 +13,6 @@ class App extends Component {
       searchField: '',
       favourites: [],
       results: [],
-      isLoading: false,
       prevSearch: '',
       whatToRender: null,
       badInput: false
@@ -55,16 +23,14 @@ class App extends Component {
     this.setState({searchField: text});
     let searchFieldCurrent = this.state.searchField.slice();
     let x = [];
-    if(searchFieldCurrent.trim() == ''){
+    if(searchFieldCurrent.trim() === ''){
       this.setState({results: x, whatToRender: null});
     }
   }
 
-  //TODO - ADD FUNCTION TO TEST FOR EMPTY STRING 
-
   handleInputSubmit(){
     const { searchField, prevSearch } = this.state;
-    if( searchField.trim() == prevSearch){
+    if( searchField.trim() === prevSearch){
       return;
     }
     this.setState({
@@ -100,11 +66,16 @@ class App extends Component {
     return body;
   }
 
+  handleStarClick(val){
+    console.log(this.state.favourites);
+    // this.setState({
+    //   favourites: this.state.favourites.concat([val])
+    // });
+  }
 
   render() {
     const searchFieldText = this.state.searchField;
-    const arrayOfNumbers = this.state.results;
-    const { isLoading, results, error, whatToRender } = this.state;
+    const { results, whatToRender, favourites } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -115,7 +86,7 @@ class App extends Component {
           onInputChange={this.handleInputChange}
           onSearchSubmit={this.handleInputSubmit} />
         <div className="App-searchresults">
-          <SwitchComponent text={results} stateConditional={whatToRender}/>
+          <SearchResults results={results} whatToRender={whatToRender} handleClick={this.handleStarClick} favourites={favourites}/>
         </div>
       </div>
     );
