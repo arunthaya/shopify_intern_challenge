@@ -1,4 +1,5 @@
 .App {
+  height: 100vmin;
 }
 
 .App-logo {
@@ -106,8 +107,9 @@ table td,th {
   height: 30vh;
 }
 
-h1 {
+.App-favourites h1 {
   margin-left: 20px;
+  color: #23965F;
 }
 
 @media screen and (max-width:600px) {
@@ -115,4 +117,3 @@ h1 {
     padding: 2px 2px;
   }
 }
-
