@@ -13,6 +13,7 @@ class SearchResults extends Component {
   }
 
   handleStarClick(identifier){
+    console.log(identifier);
     this.props.handleClick(identifier);
   }
 

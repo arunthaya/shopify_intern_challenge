@@ -15,6 +15,7 @@ class App extends Component {
     this.state = { 
       searchField: '',
       favourites: [],
+      favouritesVerbatim: [],
       results: [],
       prevSearch: '',
       whatToRender: null,
@@ -76,6 +77,7 @@ class App extends Component {
   }
 
   handleStarClick(val){
+    console.log(val); 
     let favouritesCopy = [...this.state.favourites];
     let index = favouritesCopy.indexOf(val);
     if (index !== -1){
