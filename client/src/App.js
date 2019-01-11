@@ -108,6 +108,7 @@ class App extends Component {
     }
   }
 
+//alphabetize css and this, utility.js file , and stick to the same name make it significiant 
   render() {
     const searchFieldText = this.state.searchField;
     const { results, whatToRender, favourites, favouritesVerbatim } = this.state;
