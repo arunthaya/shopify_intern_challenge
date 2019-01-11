@@ -15,7 +15,9 @@ app.get('/api/hello', (req, res) => {
 		temp.push(temp2);
 	}
 	let response = [1,2,3,4];
-	res.send({body: temp});
+	setTimeout(
+		() => res.send({body: temp}), 350);
+	
 });
 
 app.post('/api/world', (req, res) => {
@@ -27,5 +29,4 @@ app.post('/api/world', (req, res) => {
 
 app.listen(port, () => {
 	console.log(`Listening on port ${port}`);
-
 });

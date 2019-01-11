@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
 import SearchBar from './Components/SearchBar';
 import SearchResults from './Components/SearchResults';
+import Favourites from './Components/Favourites';
+import './App.css';
 
 class App extends Component {
 
@@ -9,6 +10,8 @@ class App extends Component {
     super(props);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleInputSubmit = this.handleInputSubmit.bind(this);
+    this.handleStarClick = this.handleStarClick.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.state = { 
       searchField: '',
       favourites: [],
@@ -28,6 +31,12 @@ class App extends Component {
     }
   }
 
+  handleKeyPress(e){
+    if(e.keyCode === 13){
+      this.handleInputSubmit();
+    }
+  }
+
   handleInputSubmit(){
     const { searchField, prevSearch } = this.state;
     if( searchField.trim() === prevSearch){
@@ -44,7 +53,7 @@ class App extends Component {
           let x = [];
           x = res.body;
           this.setState({
-            results: this.state.results.concat(...x),
+            results: [...x],
             whatToRender: 'results'
           })
         })
@@ -67,10 +76,18 @@ class App extends Component {
   }
 
   handleStarClick(val){
-    console.log(this.state.favourites);
-    // this.setState({
-    //   favourites: this.state.favourites.concat([val])
-    // });
+    let favouritesCopy = [...this.state.favourites];
+    let index = favouritesCopy.indexOf(val);
+    if (index !== -1){
+      favouritesCopy.splice(index, 1);
+      this.setState({
+        favourites: favouritesCopy
+      });
+    } else {
+      this.setState({
+        favourites: this.state.favourites.concat([val])
+      });
+    }
   }
 
   render() {
@@ -84,9 +101,13 @@ class App extends Component {
         <SearchBar
           value={searchFieldText}
           onInputChange={this.handleInputChange}
-          onSearchSubmit={this.handleInputSubmit} />
+          onSearchSubmit={this.handleInputSubmit} 
+          keyPress={this.handleKeyPress} />
         <div className="App-searchresults">
           <SearchResults results={results} whatToRender={whatToRender} handleClick={this.handleStarClick} favourites={favourites}/>
+        </div>
+        <div className="App-favourites">
+          <Favourites />
         </div>
       </div>
     );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SearchResult from './SearchResult';
 import '../App.css';
+import loadingIcon from './loadingIcon.svg';
 
 
 class SearchResults extends Component {
@@ -12,7 +13,6 @@ class SearchResults extends Component {
   }
 
   handleStarClick(identifier){
-    console.log('handleStarClick from searchResults');
     this.props.handleClick(identifier);
   }
 
@@ -21,7 +21,7 @@ class SearchResults extends Component {
       case 'error':
         return <h3>{this.props.results}</h3>;
       case 'isLoading':
-        return <h3>Loading</h3>;
+        return <img className="loadingIcon" src={loadingIcon} alt=""/>;
       case 'results':
         return (
           <table className="Results-table">
@@ -29,6 +29,7 @@ class SearchResults extends Component {
               {this.props.results.map( (result) => 
                 <SearchResult
                   key={result._id} 
+                  favourited = {this.props.favourites.includes(result._id) ? true : false}
                   handleClick = {this.handleStarClick}
                   title={result.title}
                   textToDisplay={result.body}
