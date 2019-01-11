@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import Debounce from './Debounce';
 import '../App.css';
 
 
@@ -9,15 +8,20 @@ class SearchBar extends Component {
 		super(props);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleKeyPress = this.handleKeyPress.bind(this);
 	}
 
 	handleSubmit(){
-		console.log('submit clicked');
+		this.props.onSearchSubmit();	
 	}
 
 	handleChange(e) {
 		console.log(e.target.value);
 		this.props.onInputChange(e.target.value);
+	}
+
+	handleKeyPress(e){
+		this.props.keyPress(e);
 	}
 
 	render(){
@@ -26,8 +30,9 @@ class SearchBar extends Component {
 			<div className="App-search">
 	          <input 
 	          	value={searchFieldText} 
-	          	onChange={this.handleChange} />
-	          <button onClick={this.handleSubmit}></button>
+	          	onChange={this.handleChange} 
+	          	onKeyDown={this.handleKeyPress}/>
+	          <button onClick={this.handleSubmit}>Search</button>
 	        </div>
         );
 	}

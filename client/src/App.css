@@ -22,6 +22,7 @@
 
 .App-search {
   position: relative;
+  height: 10vh;
 }
 
 
@@ -45,13 +46,69 @@ input:focus {
 
 button {
   margin-top: 20px;
-  margin-right: 50px;
+  margin-right: 20px;
   margin-left: 20px;
   margin-bottom: 20px;
   height: 100%;
-  width: 40px;
+  width: 74px;
+  border-radius: 3px;
+  outline: none;
 }
 
+.App-searchresults{
+  height: 45vh;
+  overflow: auto;
+}
+
+.Results-table{
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+table td,th {
+  padding: 15px;
+  vertical-align: top;
+}
+
+.Star {
+  padding-right: 0px;
+  font-size: x-large;
+  cursor: pointer;
+  color: #CECECE;
+  transform-origin: center bottom 0px;
+}
+
+.Star:hover {
+  color: black;
+  transition-duration: .2s;
+}
+
+.Star:active {
+  transform: matrix(0.95, 0, 0, 0.95, 0, 0);
+}
+
+#highlighted {
+  color: #23965F;
+}
+
+.loadingIcon {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  vertical-align: center;
+}
+
+.App-favourites {
+  background: #F7FEFA;
+  overflow: auto;
+  height: 30vh;
+}
+
+h1 {
+  margin-left: 20px;
+}
 
 @media screen and (max-width:600px) {
   input {
