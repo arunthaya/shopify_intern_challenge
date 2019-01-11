@@ -11,7 +11,7 @@ class SearchResult extends Component {
 	}
 
 	handleStarClick(val){
-		console.log(val);
+		//console.log(val);
 		this.props.handleClick(val);
 	}
 

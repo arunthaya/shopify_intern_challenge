@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import SearchBar from './Components/SearchBar';
 import SearchResults from './Components/SearchResults';
-import Favourites from './Components/Favourites';
 import './App.css';
 
 class App extends Component {
@@ -77,24 +76,41 @@ class App extends Component {
   }
 
   handleStarClick(val){
-    console.log(val); 
     let favouritesCopy = [...this.state.favourites];
+    let favouritesVerbatimCopy = [...this.state.favouritesVerbatim];
     let index = favouritesCopy.indexOf(val);
     if (index !== -1){
+      let favouriteVerbatimIndex = -1;
       favouritesCopy.splice(index, 1);
+      for(let i=0; i<favouritesVerbatimCopy.length; i++){
+        console.log(favouritesVerbatimCopy[i]._id);
+        if(favouritesVerbatimCopy[i]._id == val){
+          console.log('true')
+          favouriteVerbatimIndex = i;
+        }
+      }
+      favouritesVerbatimCopy.splice(favouriteVerbatimIndex, 1);
+      console.log(favouritesVerbatimCopy);
       this.setState({
-        favourites: favouritesCopy
+        favourites: favouritesCopy,
+        favouritesVerbatim: favouritesVerbatimCopy
       });
     } else {
-      this.setState({
-        favourites: this.state.favourites.concat([val])
-      });
+      let resultToBeStored = {};
+      this.state.results.map((result) => {
+        if(result._id === val){
+          this.setState({
+            favourites: this.state.favourites.concat([val]),
+            favouritesVerbatim: this.state.favouritesVerbatim.concat(result)
+          });
+        }
+      })
     }
   }
 
   render() {
     const searchFieldText = this.state.searchField;
-    const { results, whatToRender, favourites } = this.state;
+    const { results, whatToRender, favourites, favouritesVerbatim } = this.state;
     return (
       <div className="App">
         <header className="App-header">
@@ -109,7 +125,14 @@ class App extends Component {
           <SearchResults results={results} whatToRender={whatToRender} handleClick={this.handleStarClick} favourites={favourites}/>
         </div>
         <div className="App-favourites">
-          <Favourites />
+          <h1>Favourites</h1>
+          <SearchResults 
+            results={favouritesVerbatim} 
+            whatToRender={
+              favourites.length > 0 ? 'results' : null
+            } 
+            handleClick={this.handleStarClick} 
+            favourites={favourites}/>
         </div>
       </div>
     );
