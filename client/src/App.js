@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import SearchBar from './Components/SearchBar';
 import SearchResults from './Components/SearchResults';
+import helpers from './utilities/StringHelper';
 import './App.css';
+
+
 
 class App extends Component {
 
@@ -23,12 +26,16 @@ class App extends Component {
   }
 
   handleInputChange(text){
-    this.setState({searchField: text});
-    let searchFieldCurrent = this.state.searchField.slice();
-    let x = [];
-    if(searchFieldCurrent.trim() === ''){
-      this.setState({results: x, whatToRender: null});
-    }
+    this.setState(
+      {searchField: text},
+      () => {
+        let searchFieldCurrent = this.state.searchField.slice();
+        let x = [];
+        if(helpers.isEmpty(searchFieldCurrent)){
+          this.setState({results: x, whatToRender: null});
+        }
+      }
+    );
   }
 
   handleKeyPress(e){
@@ -38,10 +45,8 @@ class App extends Component {
   }
 
   handleInputSubmit(){
-    const { searchField, prevSearch } = this.state;
-    if( searchField.trim() === prevSearch){
-      return;
-    }
+    const { searchField, prevSearch, results } = this.state;
+    helpers.isSameSearch(searchField, prevSearch, results);
     this.setState({
       whatToRender: 'isLoading',
       prevSearch: searchField.trim()
@@ -52,10 +57,17 @@ class App extends Component {
           console.log(res);
           let x = [];
           x = res.body;
-          this.setState({
-            results: [...x],
-            whatToRender: 'results'
-          })
+          if(res.body.length === 0){
+            this.setState({
+              results: [...x],
+              whatToRender: 'noresults'
+            });
+          } else {
+            this.setState({
+              results: [...x],
+              whatToRender: 'results'
+            });
+          }
         })
       .catch(err => this.setState({results: err, whatToRender: 'error'}));
     });

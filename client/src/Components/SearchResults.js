@@ -13,7 +13,6 @@ class SearchResults extends Component {
   }
 
   handleStarClick(identifier){
-    //console.log(identifier);
     this.props.handleClick(identifier);
   }
 
@@ -39,6 +38,8 @@ class SearchResults extends Component {
               }
             </tbody>
           </table>);
+        case 'noresults':
+          return <h3>No results found</h3>;
       default:
         return null;
     }
