@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
-import SearchBar from './Components/SearchBar';
-import SearchResults from './Components/SearchResults';
-import helpers from './utilities/StringHelper';
-import './App.css';
+import React, { Component } from 'react'
+import SearchBar from './Components/SearchBar'
+import SearchResults from './Components/SearchResults'
+import helpers from './utilities/StringHelper'
+import './App.css'
 
 
 
 class App extends Component {
 
   constructor(props) {
-    super(props);
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleInputSubmit = this.handleInputSubmit.bind(this);
-    this.handleStarClick = this.handleStarClick.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
+    super(props)
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleInputSubmit = this.handleInputSubmit.bind(this)
+    this.handleStarClick = this.handleStarClick.bind(this)
+    this.handleKeyPress = this.handleKeyPress.bind(this)
     this.state = {
       searchField: '',
       favourites: [],
@@ -22,7 +22,7 @@ class App extends Component {
       prevSearch: '',
       whatToRender: null,
       badInput: false
-    };
+    }
   }
 
   handleInputChange(text){
@@ -40,7 +40,7 @@ class App extends Component {
 
   handleKeyPress(e){
     if(e.keyCode === 13){
-      this.handleInputSubmit();
+      this.handleInputSubmit()
     }
   }
 
@@ -61,31 +61,31 @@ class App extends Component {
             this.setState({
               results: [...x],
               whatToRender: 'noresults'
-            });
+            })
           } else {
             this.setState({
               results: [...x],
               whatToRender: 'results'
-            });
+            })
           }
         })
       .catch(err => this.setState({results: err, whatToRender: 'error'}));
-    });
+    })
   }
 
   componentDidMount(){
     if (!('indexedDB' in window)) {
-      console.log('This browser doesn\'t support IndexedDB');
+      console.log('This browser doesn\'t support IndexedDB')
     }
   }
 
 
   fetchData = async () => {
-    console.log(`req made`);
-    const response = await fetch(`/api/search?keywords=${this.state.searchField}`);
-    const body = await response.json();
+    console.log(`req made`)
+    const response = await fetch(`/api/search?keywords=${this.state.searchField}`)
+    const body = await response.json()
     if (response.status !== 200) throw Error(body.message)
-    return body;
+    return body
   }
 
   handleStarClick(val){
@@ -93,13 +93,13 @@ class App extends Component {
     let favouritesVerbatimCopy = [...this.state.favouritesVerbatim];
     let index = favouritesCopy.indexOf(val);
     if (index !== -1){
-      let favouriteVerbatimIndex = -1;
-      favouritesCopy.splice(index, 1);
+      let favouriteVerbatimIndex = -1
+      favouritesCopy.splice(index, 1)
       for(let i=0; i<favouritesVerbatimCopy.length; i++){
         console.log(favouritesVerbatimCopy[i]._id);
-        if(favouritesVerbatimCopy[i]._id == val){
+        if(favouritesVerbatimCopy[i]._id === val){
           console.log('true')
-          favouriteVerbatimIndex = i;
+          favouriteVerbatimIndex = i
         }
       }
       favouritesVerbatimCopy.splice(favouriteVerbatimIndex, 1);
@@ -107,21 +107,27 @@ class App extends Component {
       this.setState({
         favourites: favouritesCopy,
         favouritesVerbatim: favouritesVerbatimCopy
-      });
+      })
     } else {
-      let resultToBeStored = {};
-      this.state.results.map((result) => {
+      /* this.state.results.map((result) => {
         if(result._id === val){
           this.setState({
             favourites: this.state.favourites.concat([val]),
             favouritesVerbatim: this.state.favouritesVerbatim.concat(result)
-          });
+          })
         }
-      })
+      }) */
+      this.state.results
+        .filter((result => result._id === val))
+        .map((result) => {
+            return this.setState({
+              favourites: this.state.favourites.concat([val]),
+              favouritesVerbatim: this.state.favouritesVerbatim.concat(result)
+            })
+        })
     }
   }
 
-//alphabetize css and this, utility.js file , and stick to the same name make it significiant
   render() {
     const searchFieldText = this.state.searchField;
     const { results, whatToRender, favourites, favouritesVerbatim } = this.state;
@@ -149,8 +155,8 @@ class App extends Component {
             favourites={favourites}/>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
