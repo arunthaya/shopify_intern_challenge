@@ -4,8 +4,6 @@ import SearchResults from './Components/SearchResults'
 import helpers from './utilities/StringHelper'
 import './App.css'
 
-
-
 class App extends Component {
 
   constructor(props) {

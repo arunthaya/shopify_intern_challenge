@@ -6,14 +6,23 @@ This is my submission for the Shopify Web Engineer Internship Challenge. This we
 
 ### Installation
 
-Step 1: `yarn preinstall` This installs the needed client node modules needed for React.
+Step 1:
 
-Step 2: `yarn` This installs the needed server node modules for Node.js which is running express.js
+`yarn preinstall`
+
+This installs the needed client node modules needed for React.
+
+Step 2:
+
+`yarn`
+
+This installs the needed server node modules for Node.js which is running express.js
 
 ### Running (Install first)
 
-Step 1: `yarn start`
+Step 1:
 
+`yarn start`
 
 Change log:
 0.0.1 - Initial App Creation

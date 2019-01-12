@@ -1,13 +1,12 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-const testJson = require('./wasteresources.json')
 const MongoClient = require('mongodb').MongoClient
 const path = require('path')
 const port = process.env.PORT || 5000
 const url = process.env.MONGODB_URI || 'mongodb://localhost:27017'
 const dbpath = process.env.MONGODB_DB || 'shopifychallenge'
-const client = new MongoClient(url)
+//const client = new MongoClient(url)
 require('custom-env').env()
 let mongodb
 
@@ -39,7 +38,7 @@ app.get('/api/search', (req, res) => {
 app.listen(port, () => {
   MongoClient.connect(url, function (err, db) {
 	  console.log('Connected correctly to server')
-	  mongodb = db.db('heroku_r30zcvb0')
+	  mongodb = db.db(dbpath)
   })
   console.log(`Listening on port ${port}`)
 })
