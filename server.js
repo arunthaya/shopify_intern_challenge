@@ -9,7 +9,6 @@ const port = process.env.PORT || 5000;
 const url= process.env.MONGODB_URI || 'mongodb://localhost:27017';
 const dbpath = process.env.MONGODB_DB || 'shopifychallenge';
 require('custom-env').env();
-let dbpath = 'shopifychallenge';
 let mongodb;
 
 app.use(bodyParser.json());
