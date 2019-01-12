@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import SearchBar from './Components/SearchBar';
 import SearchResults from './Components/SearchResults';
+import helpers from './utilities/StringHelper';
 import './App.css';
+
+
 
 class App extends Component {
 
@@ -11,7 +14,7 @@ class App extends Component {
     this.handleInputSubmit = this.handleInputSubmit.bind(this);
     this.handleStarClick = this.handleStarClick.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.state = { 
+    this.state = {
       searchField: '',
       favourites: [],
       favouritesVerbatim: [],
@@ -23,12 +26,16 @@ class App extends Component {
   }
 
   handleInputChange(text){
-    this.setState({searchField: text});
-    let searchFieldCurrent = this.state.searchField.slice();
-    let x = [];
-    if(searchFieldCurrent.trim() === ''){
-      this.setState({results: x, whatToRender: null});
-    }
+    this.setState(
+      {searchField: text},
+      () => {
+        let searchFieldCurrent = this.state.searchField.slice();
+        let x = [];
+        if(helpers.isEmpty(searchFieldCurrent)){
+          this.setState({results: x, whatToRender: null});
+        }
+      }
+    );
   }
 
   handleKeyPress(e){
@@ -38,10 +45,8 @@ class App extends Component {
   }
 
   handleInputSubmit(){
-    const { searchField, prevSearch } = this.state;
-    if( searchField.trim() === prevSearch){
-      return;
-    }
+    const { searchField, prevSearch, results } = this.state;
+    helpers.isSameSearch(searchField, prevSearch, results);
     this.setState({
       whatToRender: 'isLoading',
       prevSearch: searchField.trim()
@@ -52,24 +57,32 @@ class App extends Component {
           console.log(res);
           let x = [];
           x = res.body;
-          this.setState({
-            results: [...x],
-            whatToRender: 'results'
-          })
+          if(res.body.length === 0){
+            this.setState({
+              results: [...x],
+              whatToRender: 'noresults'
+            });
+          } else {
+            this.setState({
+              results: [...x],
+              whatToRender: 'results'
+            });
+          }
         })
       .catch(err => this.setState({results: err, whatToRender: 'error'}));
-    });      
+    });
   }
-  
+
   componentDidMount(){
     if (!('indexedDB' in window)) {
       console.log('This browser doesn\'t support IndexedDB');
     }
   }
 
-  
+
   fetchData = async () => {
-    const response = await fetch('/api/hello');
+    console.log(`req made`);
+    const response = await fetch(`/api/search?keywords=${this.state.searchField}`);
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message)
     return body;
@@ -108,31 +121,31 @@ class App extends Component {
     }
   }
 
-//alphabetize css and this, utility.js file , and stick to the same name make it significiant 
+//alphabetize css and this, utility.js file , and stick to the same name make it significiant
   render() {
     const searchFieldText = this.state.searchField;
     const { results, whatToRender, favourites, favouritesVerbatim } = this.state;
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Toronto Waste Lookup</h1>
+          <h1>Toronto Waste Lookup Test</h1>
         </header>
         <SearchBar
           value={searchFieldText}
           onInputChange={this.handleInputChange}
-          onSearchSubmit={this.handleInputSubmit} 
+          onSearchSubmit={this.handleInputSubmit}
           keyPress={this.handleKeyPress} />
         <div className="App-searchresults">
           <SearchResults results={results} whatToRender={whatToRender} handleClick={this.handleStarClick} favourites={favourites}/>
         </div>
         <div className="App-favourites">
           <h1>Favourites</h1>
-          <SearchResults 
-            results={favouritesVerbatim} 
+          <SearchResults
+            results={favouritesVerbatim}
             whatToRender={
               favourites.length > 0 ? 'results' : null
-            } 
-            handleClick={this.handleStarClick} 
+            }
+            handleClick={this.handleStarClick}
             favourites={favourites}/>
         </div>
       </div>
