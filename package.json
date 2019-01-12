@@ -6,7 +6,8 @@
     "server": "nodemon server.js",
     "preinstall": "cd client && yarn install",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "start": "cd client && yarn build && node server.js",
+    "start": "node server.js",
+    "start-dev": "cd client && yarn build && node server.js",
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
