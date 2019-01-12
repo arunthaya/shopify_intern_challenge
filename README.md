@@ -1,7 +1,8 @@
 ### Shopify Web Engineer Summer Internship Challenge (2019)
 
-This is my submission for the Shopify Web Engineer Internship Challenge. This web app grabs waste resource info from Toronto's waste resource file. This web app uses React as a frontend framework and Node.js and MongoDB as the backend. I chose to use Node.js and MongoDB as a backend to showcase my ability to work with backends and make the frontend and backend communicate seamlessly.
+This is my submission for the Shopify Web Engineer Internship Challenge. This web app allows users to quickly search the database to retrieve information regarding proper waste disposal. This web app uses React as a front-end framework and Node.js and MongoDB as the backend. I chose to use Node.js and MongoDB as a backend to showcase my ability to work with backends and make the frontend and backend communicate seamlessly.
 
+[Hosted link]()
 ***
 
 ### Installation

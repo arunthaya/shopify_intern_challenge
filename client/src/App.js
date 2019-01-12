@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import SearchBar from './Components/SearchBar'
-import SearchResults from './Components/SearchResults'
+import SearchBar from './components/SearchBar.jsx'
+import SearchResults from './components/SearchResults.jsx'
 import helpers from './utilities/StringHelper'
 import './App.css'
 
@@ -19,7 +19,7 @@ class App extends Component {
       results: [],
       prevSearch: '',
       whatToRender: null,
-      badInput: false
+      isBadInput: false
     }
   }
 
