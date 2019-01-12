@@ -6,18 +6,16 @@ This is my submission for the Shopify Web Engineer Internship Challenge. This we
 
 ### Installation
 Prerequisites:
-[Node.js](https://nodejs.org/en/download/)
-[MongoDB](https://www.mongodb.com/download-center/community)
+[Node.js](https://nodejs.org/en/download/),
+[MongoDB](https://www.mongodb.com/download-center/community),
 [Yarn](https://www.npmjs.com/package/yarn)
 
-Installation using Yarn
+Installation using Yarn:
 ```
 yarn preinstall
 yarn install
-mongo <dbname> mongoscript.js
 ```
-
-This auto populates your local MongoDB database with the necessary files.
+Replace <dbname> with the url of MongoDB running locally, by default MongoDB uses: "localhost:27017". This populates local MongoDB.
 
 ### Running (Install first)
 
