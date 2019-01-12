@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SearchResult from './SearchResult'
 import '../App.css'
-import loadingIcon from './loadingIcon.svg'
+import loadingIcon from 'loadingIcon.svg'
 
 class SearchResults extends Component {
   constructor (props) {
