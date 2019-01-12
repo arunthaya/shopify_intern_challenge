@@ -8,30 +8,16 @@ This is my submission for the Shopify Web Engineer Internship Challenge. This we
 Prerequisites:
 [Node.js](https://nodejs.org/en/download/)
 [MongoDB](https://www.mongodb.com/download-center/community)
+[Yarn](https://www.npmjs.com/package/yarn)
 
-Step 1:
-
+Installation using Yarn
 ```
 yarn preinstall
-```
-
-This installs the needed client node modules needed for React.
-
-Step 2:
-
-```
 yarn install
-```
-
-This installs the needed server node modules for Node.js which is running express.js
-
-Step 3:
-
-```
 mongo <dbname> mongoscript.js
 ```
 
-This auto populates your local MongoDB database with the necessary files. 
+This auto populates your local MongoDB database with the necessary files.
 
 ### Running (Install first)
 
