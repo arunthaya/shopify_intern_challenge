@@ -33,7 +33,7 @@ class App extends Component {
           this.setState({results: x, whatToRender: null});
         }
       }
-    );
+    )
   }
 
   handleKeyPress(e){
@@ -52,7 +52,6 @@ class App extends Component {
       this.fetchData()
         .then(
         res => {
-          console.log(res);
           let x = [];
           x = res.body;
           if(res.body.length === 0){
@@ -67,7 +66,7 @@ class App extends Component {
             })
           }
         })
-      .catch(err => this.setState({results: err, whatToRender: 'error'}));
+      .catch(err => this.setState({results: err, whatToRender: 'error'}))
     })
   }
 
@@ -77,9 +76,7 @@ class App extends Component {
     }
   }
 
-
   fetchData = async () => {
-    console.log(`req made`)
     const response = await fetch(`/api/search?keywords=${this.state.searchField}`)
     const body = await response.json()
     if (response.status !== 200) throw Error(body.message)
@@ -94,14 +91,11 @@ class App extends Component {
       let favouriteVerbatimIndex = -1
       favouritesCopy.splice(index, 1)
       for(let i=0; i<favouritesVerbatimCopy.length; i++){
-        console.log(favouritesVerbatimCopy[i]._id);
         if(favouritesVerbatimCopy[i]._id === val){
-          console.log('true')
           favouriteVerbatimIndex = i
         }
       }
       favouritesVerbatimCopy.splice(favouriteVerbatimIndex, 1);
-      console.log(favouritesVerbatimCopy);
       this.setState({
         favourites: favouritesCopy,
         favouritesVerbatim: favouritesVerbatimCopy
@@ -138,9 +132,15 @@ class App extends Component {
           value={searchFieldText}
           onInputChange={this.handleInputChange}
           onSearchSubmit={this.handleInputSubmit}
-          keyPress={this.handleKeyPress} />
+          keyPress={this.handleKeyPress}
+        />
         <div className="App-searchresults">
-          <SearchResults results={results} whatToRender={whatToRender} handleClick={this.handleStarClick} favourites={favourites}/>
+          <SearchResults
+            results={results}
+            whatToRender={whatToRender}
+            handleClick={this.handleStarClick}
+            favourites={favourites}
+          />
         </div>
         <div className="App-favourites">
           <h1>Favourites</h1>
@@ -150,7 +150,8 @@ class App extends Component {
               favourites.length > 0 ? 'results' : null
             }
             handleClick={this.handleStarClick}
-            favourites={favourites}/>
+            favourites={favourites}
+          />
         </div>
       </div>
     )

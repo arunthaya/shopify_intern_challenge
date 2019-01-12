@@ -17,6 +17,12 @@
     "mongodb": "^3.1.10",
     "nodemon": "^1.18.9"
   },
+  "standard": {
+    "ignore": [
+      "wasteresources.js",
+      "wasteresources.json"
+    ]
+  },
   "devDependencies": {
     "concurrently": "^4.0.1"
   }
