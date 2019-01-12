@@ -4,14 +4,16 @@
   "scripts": {
     "client": "cd client && yarn start",
     "server": "nodemon server.js",
-    "preinstall" : "cd client && yarn install",
+    "preinstall": "cd client && yarn install",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "start": "node server.js",
+    "start": "cd client && yarn build && node server.js",
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "custom-env": "^1.0.0",
     "express": "^4.16.4",
+    "mongodb": "^3.1.10",
     "nodemon": "^1.18.9"
   },
   "devDependencies": {

@@ -11,7 +11,7 @@ class App extends Component {
     this.handleInputSubmit = this.handleInputSubmit.bind(this);
     this.handleStarClick = this.handleStarClick.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.state = { 
+    this.state = {
       searchField: '',
       favourites: [],
       favouritesVerbatim: [],
@@ -58,18 +58,19 @@ class App extends Component {
           })
         })
       .catch(err => this.setState({results: err, whatToRender: 'error'}));
-    });      
+    });
   }
-  
+
   componentDidMount(){
     if (!('indexedDB' in window)) {
       console.log('This browser doesn\'t support IndexedDB');
     }
   }
 
-  
+
   fetchData = async () => {
-    const response = await fetch('/api/hello');
+    console.log(`req made`);
+    const response = await fetch(`/api/search?keywords=${this.state.searchField}`);
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message)
     return body;
@@ -108,31 +109,31 @@ class App extends Component {
     }
   }
 
-//alphabetize css and this, utility.js file , and stick to the same name make it significiant 
+//alphabetize css and this, utility.js file , and stick to the same name make it significiant
   render() {
     const searchFieldText = this.state.searchField;
     const { results, whatToRender, favourites, favouritesVerbatim } = this.state;
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Toronto Waste Lookup</h1>
+          <h1>Toronto Waste Lookup Test</h1>
         </header>
         <SearchBar
           value={searchFieldText}
           onInputChange={this.handleInputChange}
-          onSearchSubmit={this.handleInputSubmit} 
+          onSearchSubmit={this.handleInputSubmit}
           keyPress={this.handleKeyPress} />
         <div className="App-searchresults">
           <SearchResults results={results} whatToRender={whatToRender} handleClick={this.handleStarClick} favourites={favourites}/>
         </div>
         <div className="App-favourites">
           <h1>Favourites</h1>
-          <SearchResults 
-            results={favouritesVerbatim} 
+          <SearchResults
+            results={favouritesVerbatim}
             whatToRender={
               favourites.length > 0 ? 'results' : null
-            } 
-            handleClick={this.handleStarClick} 
+            }
+            handleClick={this.handleStarClick}
             favourites={favourites}/>
         </div>
       </div>

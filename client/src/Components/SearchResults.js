@@ -20,16 +20,16 @@ class SearchResults extends Component {
   conditionalRender(whatToRender){
     switch(whatToRender){
       case 'error':
-        return <h3>{this.props.results}</h3>;
+        return <h3>{this.props.results.toString()}</h3>;
       case 'isLoading':
         return <img className="loadingIcon" src={loadingIcon} alt=""/>;
       case 'results':
         return (
           <table className="Results-table">
             <tbody>
-              {this.props.results.map( (result) => 
+              {this.props.results.map( (result) =>
                 <SearchResult
-                  key={result._id} 
+                  key={result._id}
                   favourited = {this.props.favourites.includes(result._id) ? true : false}
                   handleClick = {this.handleStarClick}
                   title={result.title}
