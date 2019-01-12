@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SearchResult from './SearchResult'
 import '../App.css'
-import loadingIcon from 'loadingIcon.svg'
+//import loadingIcon from 'loadingIcon.svg'
 
 class SearchResults extends Component {
   constructor (props) {
@@ -19,7 +19,8 @@ class SearchResults extends Component {
       case 'error':
         return <h3>{this.props.results.toString()}</h3>
       case 'isLoading':
-        return <img className='loadingIcon' src={loadingIcon} alt='' />
+        return <h3>Loading...</h3>
+        //<img className='loadingIcon' src={loadingIcon} alt='' />
       case 'results':
         return (
           <table className='Results-table'>
