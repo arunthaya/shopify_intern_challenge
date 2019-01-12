@@ -15,7 +15,7 @@ require('custom-env').env();
 // 	mongodb = client.db('shopifychallenge');
 // });
 
-console.log('new');
+console.log('new not working');
 if (process.env.NODE_ENV === 'production') {
 	dbpath = process.env.MONGODB_DB;
   // Serve any static files
