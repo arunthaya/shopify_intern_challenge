@@ -9,6 +9,14 @@ const dbpath = process.env.MONGODB_DB || 'shopifychallenge'
 require('custom-env').env()
 let mongodb
 
+MongoClient.connect(url, function (err, db) {
+  if(err){
+    throw err
+  }
+  console.log('Connected correctly to db')
+  mongodb = db
+})
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -35,12 +43,6 @@ app.get('/api/search', (req, res) => {
 })
 
 app.listen(port, () => {
-  MongoClient.connect(url, function (err, db) {
-    if(err){
-      throw err
-    }
-  	console.log('Connected correctly to db')
-	  mongodb = db
-  })
+
   console.log(`Listening on port ${port}`)
 })
