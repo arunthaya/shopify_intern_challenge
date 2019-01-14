@@ -1,69 +1,4 @@
-/*.App {
-  box-sizing: border-box;
-  height: 100vh;
-}
-
-.row::after {
-  clear: both;
-  content: "";
-  padding: 15px;
-}
-
-.App-header {
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  align-items: center;
-  just-content: center;
-  background-image: linear-gradient(to right, #1D5A92, #23965F);
-  color: white;
-  font-size: calc(5px + 2vmin);
-  padding: 1%;
-  margin: auto;
-  text-align: center;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-.App-search {
-  position: relative;
-  height: 10vh;
-}
-
-
-input {
-  margin-top: 20px;
-  margin-right: 20px;
-  margin-left: 20px;
-  margin-bottom: 20px;
-  width: 85%;
-  padding: 20px 15px;
-  border: 2px solid #CECECE;
-  border-radius: 3px;
-  outline: none;
-  font-size: 24px;
-  transition: 0.5s;
-}
-
-input:focus {
-  border: 2px solid black;
-}
-
-button {
-  margin-top: 20px;
-  margin-right: 20px;
-  margin-left: 20px;
-  margin-bottom: 20px;
-  height: 100%;
-  width: 74px;
-  border-radius: 3px;
-  outline: none;
-}
-
+/*
 .App-searchresults{
   height: 45vh;
   overflow: auto;
@@ -127,6 +62,7 @@ table td,th {
 }
 */
 
+
 .app {
   /*font-size: calc(5px + 2vmin);*/
   -moz-appearance: none;
@@ -137,7 +73,49 @@ table td,th {
 .header {
   background-image: linear-gradient(to right, #1D5A92, #23965F);
   color: white;
-  padding: 1%;
   margin: auto;
+  padding: 1%;
   text-align: center;
+}
+
+.app-header {
+  height: 30vh;
+  box-shadow: 0px -3px 30px #CECECE;
+  -moz-transition:all .5s ease-in-out;
+  -o-transition:all .5s ease-in-out;
+  -webkit-transition:all .5s ease-in-out;
+}
+.app-body {
+  height: 70vh;
+}
+
+.searchresults {
+  min-height: 60%;
+  max-height: 60%;
+  overflow-y: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.favourites {
+  background-color: #F7FEFA;
+  width: 100%;
+  min-height: 40%;
+  max-height: 40%;
+  overflow-y: auto;
+}
+.favourites h1 {
+  width: 80%;
+  margin: auto;
+}
+@media screen and (max-width:600px) {
+  .app-header {
+    height: 15vh;
+  }
+  .app-body {
+    height: 85vh;
+  }
+  h1 {
+    font-size: 1rem;
+  }
 }

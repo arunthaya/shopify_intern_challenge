@@ -17,13 +17,21 @@ class SearchResult extends Component {
     return (
       <React.Fragment>
         <tr>
-          <td
-            onClick={() => this.handleStarClick(this.props.id)}
-            className='Star'
-            id={this.props.favourited ? 'highlighted' : null}
-		      	>&#9733;
-          </td>
-          <td>{this.props.title}</td>
+          {this.props.favourited ?
+            (
+              <td onClick={() => this.handleStarClick(this.props.id)}>
+                <button className='star highlighted'>&#9733;</button>
+                {this.props.title}
+              </td>
+            ) : (
+              <td onClick={() => this.handleStarClick(this.props.id)}>
+                <button className='star'>&#9733;</button>
+                {this.props.title}
+              </td>
+            )
+          }
+
+
           <td>{ReactHtmlParser(entities.decodeHTML(this.props.textToDisplay))}</td>
         </tr>
       </React.Fragment>

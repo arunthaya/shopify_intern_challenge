@@ -110,14 +110,6 @@ class App extends Component {
         favouritesVerbatim: favouritesVerbatimCopy
       })
     } else {
-      /* this.state.results.map((result) => {
-        if(result._id === val){
-          this.setState({
-            favourites: this.state.favourites.concat([val]),
-            favouritesVerbatim: this.state.favouritesVerbatim.concat(result)
-          })
-        }
-      }) */
       this.state.results
         .filter((result => result._id === val))
         .map((result) => {
@@ -134,34 +126,40 @@ class App extends Component {
     const { results, whatToRender, favourites, favouritesVerbatim, isBadInput } = this.state;
     return (
       <div className="app">
-        <header className="header" >
-          <h1>Toronto Waste Lookup Test</h1>
-        </header>
-        <SearchBar
-          isBadInput={isBadInput}
-          onInputChange={this.handleInputChange}
-          onSearchSubmit={this.handleInputSubmit}
-          keyPress={this.handleKeyPress}
-          value={searchFieldText}
-        />
-        <div className="App-searchresults">
-          <SearchResults
-            results={results}
-            whatToRender={whatToRender}
-            handleClick={this.handleStarClick}
-            favourites={favourites}
+        <div className="app-header">
+          <header className="header" >
+            <h1>Toronto Waste Lookup Test</h1>
+          </header>
+          <SearchBar
+            isBadInput={isBadInput}
+            onInputChange={this.handleInputChange}
+            onSearchSubmit={this.handleInputSubmit}
+            keyPress={this.handleKeyPress}
+            value={searchFieldText}
           />
         </div>
-        <div className="App-favourites">
-          <h1>Favourites</h1>
-          <SearchResults
-            results={favouritesVerbatim}
-            whatToRender={
-              favourites.length > 0 ? 'results' : null
-            }
-            handleClick={this.handleStarClick}
-            favourites={favourites}
-          />
+        <div className="app-body">
+          <div className="searchresults">
+            <SearchResults
+              results={results}
+              whatToRender={whatToRender}
+              handleClick={this.handleStarClick}
+              favourites={favourites}
+            />
+          </div>
+          <div className="favourites">
+            <div className="fav-content">
+              <h1>Favourites</h1>
+              <SearchResults
+                results={favouritesVerbatim}
+                whatToRender={
+                  favourites.length > 0 ? 'results' : null
+                }
+                handleClick={this.handleStarClick}
+                favourites={favourites}
+              />
+            </div>
+          </div>
         </div>
       </div>
     )
