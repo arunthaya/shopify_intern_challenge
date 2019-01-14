@@ -37,7 +37,7 @@ app.get('/api/search', (req, res) => {
 app.listen(port, () => {
   MongoClient.connect(url, function (err, db) {
   	console.log('Connected correctly to db')
-	  mongodb = db.db(dbpath)
+	  mongodb = db;
   })
   console.log(`Listening on port ${port}`)
 })
