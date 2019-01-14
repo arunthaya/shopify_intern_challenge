@@ -1,0 +1,39 @@
+.searchresult-child {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.star {
+  outline: none;
+  border: none;
+  color: #CECECE;
+  background: none;
+  cursor: pointer;
+  height: 3vh;
+  width: 3vh;
+  font-size: 2rem;
+  padding-right: 3rem;
+}
+
+.star:hover {
+  color: black;
+}
+
+.star:active {
+  color: #0e633b;
+}
+
+.highlighted {
+  color: #23965F;
+}
+
+@media screen and (max-width:600px) {
+  td, tr{
+    display: block;
+  }
+  .star {
+    font-size: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}

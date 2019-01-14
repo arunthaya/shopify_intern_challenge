@@ -39,12 +39,21 @@ class App extends Component {
   handleKeyPress(e){
     if(e.keyCode === 13){
       this.handleInputSubmit()
+    } else {
+      this.setState({
+        isBadInput: false
+      })
     }
   }
 
   handleInputSubmit(){
     const { searchField, prevSearch, results } = this.state;
-    helpers.isSameSearch(searchField, prevSearch, results);
+    console.log(helpers.isSameSearch(searchField, prevSearch, results) === true)
+    if (helpers.isSameSearch(searchField, prevSearch, results) === true){
+      return this.setState({
+        isBadInput: true
+      })
+    }
     this.setState({
       whatToRender: 'isLoading',
       prevSearch: searchField.trim()
@@ -52,8 +61,8 @@ class App extends Component {
       this.fetchData()
         .then(
         res => {
-          let x = [];
-          x = res.body;
+          let x = []
+          x = res.body
           if(res.body.length === 0){
             this.setState({
               results: [...x],
@@ -101,14 +110,6 @@ class App extends Component {
         favouritesVerbatim: favouritesVerbatimCopy
       })
     } else {
-      /* this.state.results.map((result) => {
-        if(result._id === val){
-          this.setState({
-            favourites: this.state.favourites.concat([val]),
-            favouritesVerbatim: this.state.favouritesVerbatim.concat(result)
-          })
-        }
-      }) */
       this.state.results
         .filter((result => result._id === val))
         .map((result) => {
@@ -122,36 +123,43 @@ class App extends Component {
 
   render() {
     const searchFieldText = this.state.searchField;
-    const { results, whatToRender, favourites, favouritesVerbatim } = this.state;
+    const { results, whatToRender, favourites, favouritesVerbatim, isBadInput } = this.state;
     return (
-      <div className="App">
-        <header className="App-header row" >
-          <h1>Toronto Waste Lookup Test</h1>
-        </header>
-        <SearchBar
-          value={searchFieldText}
-          onInputChange={this.handleInputChange}
-          onSearchSubmit={this.handleInputSubmit}
-          keyPress={this.handleKeyPress}
-        />
-        <div className="App-searchresults">
-          <SearchResults
-            results={results}
-            whatToRender={whatToRender}
-            handleClick={this.handleStarClick}
-            favourites={favourites}
+      <div className="app">
+        <div className="app-header">
+          <header className="header" >
+            <h1>Toronto Waste Lookup Test</h1>
+          </header>
+          <SearchBar
+            isBadInput={isBadInput}
+            onInputChange={this.handleInputChange}
+            onSearchSubmit={this.handleInputSubmit}
+            keyPress={this.handleKeyPress}
+            value={searchFieldText}
           />
         </div>
-        <div className="App-favourites">
-          <h1>Favourites</h1>
-          <SearchResults
-            results={favouritesVerbatim}
-            whatToRender={
-              favourites.length > 0 ? 'results' : null
-            }
-            handleClick={this.handleStarClick}
-            favourites={favourites}
-          />
+        <div className="app-body">
+          <div className="searchresults">
+            <SearchResults
+              results={results}
+              whatToRender={whatToRender}
+              handleClick={this.handleStarClick}
+              favourites={favourites}
+            />
+          </div>
+          <div className="favourites">
+            <div className="fav-content">
+              <h1>Favourites</h1>
+              <SearchResults
+                results={favouritesVerbatim}
+                whatToRender={
+                  favourites.length > 0 ? 'results' : null
+                }
+                handleClick={this.handleStarClick}
+                favourites={favourites}
+              />
+            </div>
+          </div>
         </div>
       </div>
     )

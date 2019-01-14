@@ -7,8 +7,12 @@ const helpers = {
     return false
   },
   isSameSearch: function (str1, str2, results) {
-    if (str1.trim() === str2 && results.length !== 0) return
-    if (helpers.isEmpty(str1)) return
+    if (str1.trim() === str2 && results.length !== 0) {
+      return true
+    }
+    if (helpers.isEmpty(str1)) {
+      return true
+    }
   }
 }
 

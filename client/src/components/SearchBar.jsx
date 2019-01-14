@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../App.css'
+import '../styling/SearchBarStyling.css'
 
 class SearchBar extends Component {
   constructor (props) {
@@ -25,12 +25,23 @@ class SearchBar extends Component {
   render () {
     const searchFieldText = this.props.value
     return (
-      <div className='App-search'>
-        <input
-          value={searchFieldText}
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyPress} />
-        <button onClick={this.handleSubmit}>Search</button>
+      <div className='search'>
+        {this.props.isBadInput ? (
+          <input
+            value={searchFieldText}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyPress}
+            className='error'
+          />
+        ) : (
+          <input
+            value={searchFieldText}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyPress}
+          />
+        )}
+
+          <button onClick={this.handleSubmit}>&#8981;</button>
       </div>
     )
   }

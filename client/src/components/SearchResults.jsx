@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import SearchResult from './SearchResult.jsx'
-import '../App.css'
+import '../styling/SearchResults.css'
 //import loadingIcon from 'loadingIcon.svg'
 
 class SearchResults extends Component {
@@ -47,7 +47,9 @@ class SearchResults extends Component {
   render () {
     const whatToRender = this.props.whatToRender
     return (
-      this.conditionalRender(whatToRender)
+      <div className='searchresult-child'>
+        {this.conditionalRender(whatToRender)}
+      </div>
     )
   }
 }
