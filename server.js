@@ -13,8 +13,9 @@ MongoClient.connect(url, function (err, db) {
   if(err){
     throw err
   }
+  console.log(db);
   console.log('Connected correctly to db')
-  mongodb = db
+  mongodb = db.db(url);
 })
 
 app.use(bodyParser.json())
