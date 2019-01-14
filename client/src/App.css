@@ -1,15 +1,28 @@
 .App {
   box-sizing: border-box;
+  height: 100vh;
+}
+
+.row::after {
+  clear: both;
+  content: "";
+  padding: 15px;
 }
 
 .App-header {
-  background-image: linear-gradient(to right, #1D5A92, #23965F);
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px + 2vmin); */
+  align-items: center;
+  just-content: center;
+  background-image: linear-gradient(to right, #1D5A92, #23965F);
   color: white;
+  font-size: calc(5px + 2vmin);
+  padding: 1%;
+  margin: auto;
+  text-align: center;
 }
 
 .App-link {

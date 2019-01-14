@@ -22,9 +22,16 @@ Replace <dbname> with the url of MongoDB running locally, by default MongoDB use
 
 Step 1:
 
-`yarn start`
+Run MongoDB script to populate database. Replace <dbname> with name of database, i.e "localhost:27017/shopifychallenge"
 
-Change log:
-0.0.1 - Initial App Creation
-0.0.2 - Basic layout creation and parent components
-0.1.0 - App can favourite
+```
+mongo <dbname> loaderscript.js
+```
+
+Step 2:
+
+Run the application using Yarn:
+
+```
+yarn start
+```

@@ -125,7 +125,7 @@ class App extends Component {
     const { results, whatToRender, favourites, favouritesVerbatim } = this.state;
     return (
       <div className="App">
-        <header className="App-header">
+        <header className="App-header row" >
           <h1>Toronto Waste Lookup Test</h1>
         </header>
         <SearchBar

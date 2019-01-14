@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SearchResult from './SearchResult'
+import SearchResult from './SearchResult.jsx'
 import '../App.css'
 //import loadingIcon from 'loadingIcon.svg'
 
