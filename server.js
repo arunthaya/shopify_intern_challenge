@@ -4,7 +4,7 @@ const app = express()
 const MongoClient = require('mongodb').MongoClient
 const path = require('path')
 const port = process.env.PORT || 5000
-const url = process.env.MONGODB_URL || 'mongodb://localhost:27017'
+const url = process.env.MONGODB_URI || 'mongodb://localhost:27017'
 const dbpath = process.env.MONGODB_DB || 'shopifychallenge'
 require('custom-env').env()
 let mongodb
