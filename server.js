@@ -6,6 +6,7 @@ const path = require('path')
 const port = process.env.PORT || 5000
 const url = process.env.MONGODB_URI || 'mongodb://localhost:27017'
 const dbpath = process.env.MONGODB_DB || 'shopifychallenge'
+const https = require('https')
 require('custom-env').env()
 let mongodb
 
@@ -13,10 +14,7 @@ MongoClient.connect(url, function (err, db) {
   if(err){
     throw err
   }
-  console.log(db);
-  console.log('Connected correctly to db')
   mongodb = db.db(dbpath);
-  console.log(mongodb);
 })
 
 app.use(bodyParser.json())
@@ -44,5 +42,8 @@ app.get('/api/search', (req, res) => {
 })
 
 app.listen(port, () => {
+  setInterval(function(){
+    https.get("https://shopifywebchallengearun.herokuapp.com/")
+  }, 5000)
   console.log(`Listening on port ${port}`)
 })
