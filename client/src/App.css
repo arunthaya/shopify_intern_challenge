@@ -127,6 +127,17 @@ table td,th {
 }
 */
 
-.App {
-  /* */
+.app {
+  /*font-size: calc(5px + 2vmin);*/
+  -moz-appearance: none;
+-webkit-appearance: none;
+}
+
+
+.header {
+  background-image: linear-gradient(to right, #1D5A92, #23965F);
+  color: white;
+  padding: 1%;
+  margin: auto;
+  text-align: center;
 }

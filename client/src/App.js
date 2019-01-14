@@ -39,12 +39,21 @@ class App extends Component {
   handleKeyPress(e){
     if(e.keyCode === 13){
       this.handleInputSubmit()
+    } else {
+      this.setState({
+        isBadInput: false
+      })
     }
   }
 
   handleInputSubmit(){
     const { searchField, prevSearch, results } = this.state;
-    helpers.isSameSearch(searchField, prevSearch, results);
+    console.log(helpers.isSameSearch(searchField, prevSearch, results) === true)
+    if (helpers.isSameSearch(searchField, prevSearch, results) === true){
+      return this.setState({
+        isBadInput: true
+      })
+    }
     this.setState({
       whatToRender: 'isLoading',
       prevSearch: searchField.trim()
@@ -52,8 +61,8 @@ class App extends Component {
       this.fetchData()
         .then(
         res => {
-          let x = [];
-          x = res.body;
+          let x = []
+          x = res.body
           if(res.body.length === 0){
             this.setState({
               results: [...x],
@@ -122,17 +131,18 @@ class App extends Component {
 
   render() {
     const searchFieldText = this.state.searchField;
-    const { results, whatToRender, favourites, favouritesVerbatim } = this.state;
+    const { results, whatToRender, favourites, favouritesVerbatim, isBadInput } = this.state;
     return (
-      <div className="App">
-        <header className="App-header row" >
+      <div className="app">
+        <header className="header" >
           <h1>Toronto Waste Lookup Test</h1>
         </header>
         <SearchBar
-          value={searchFieldText}
+          isBadInput={isBadInput}
           onInputChange={this.handleInputChange}
           onSearchSubmit={this.handleInputSubmit}
           keyPress={this.handleKeyPress}
+          value={searchFieldText}
         />
         <div className="App-searchresults">
           <SearchResults
