@@ -4,7 +4,7 @@ This is my submission for the Shopify Web Engineer Internship Challenge. This we
 
 ![Gif Recording](https://user-images.githubusercontent.com/25303677/51163075-83e40380-1866-11e9-9f22-78ca1f710e22.gif)
 
-[Hosted link]()
+[Hosted link](https://shopifywebchallengearun.herokuapp.com)
 ***
 
 ### Installation
