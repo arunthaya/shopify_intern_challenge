@@ -48,7 +48,6 @@ class App extends Component {
 
   handleInputSubmit(){
     const { searchField, prevSearch, results } = this.state;
-    console.log(helpers.isSameSearch(searchField, prevSearch, results) === true)
     if (helpers.isSameSearch(searchField, prevSearch, results) === true){
       return this.setState({
         isBadInput: true
@@ -90,7 +89,6 @@ class App extends Component {
     const response = await fetch(`/api/search?keywords=${this.state.searchField}`)
     const body = await response.json()
     if (response.status !== 200) {
-      console.log(body)
       throw Error(body.error)
     }
     return body

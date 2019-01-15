@@ -15,11 +15,12 @@ let mongodb
  * @param {String} url - Supplied url from .env file or defaults to original one
  */
 MongoClient.connect(url, function (err, db) {
-  if(err){
-    return console.log(err)
-  }
-  mongodb = db.db(dbpath);
+if(err){
+  return console.log(err)
+}
+mongodb = db.db(dbpath);
 })
+
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -55,10 +56,10 @@ app.get('/api/search', (req, res) => {
       if (err) { //error connecting to db or error with db
         console.log(err)
         response = { error: 'Error connecting to MongoDB'}
-        return res.send(500, response)
+        return setTimeout(() => res.send(500, response), 250) //delay by 250ms simulating real life server
       }
       response = { body: result }
-      res.send(response)
+      setTimeout(() => res.send(response), 250)
     })
   } catch (e){ //initial connection with mongodb not successful
     console.log(e)
