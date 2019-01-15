@@ -37,3 +37,12 @@ Run the application using Yarn:
 ```
 yarn start
 ```
+
+### Architecture
+
+![Architecture](https://user-images.githubusercontent.com/25303677/51163681-7c255e80-1868-11e9-837a-1d3be4a0ef47.png)
+
+MVC - Model View Control pattern
+  - Model is MongoDB as the back-end
+  - Controller is Node.js
+  - View is React 
