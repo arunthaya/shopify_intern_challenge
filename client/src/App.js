@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import SearchBar from './components/SearchBar.jsx'
 import SearchResults from './components/SearchResults.jsx'
 import helpers from './utilities/StringHelper'
-import './App.css'
+import './styling/App.css'
 
 class App extends Component {
 

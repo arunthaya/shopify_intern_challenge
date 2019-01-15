@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import entities from 'entities'
 import ReactHtmlParser from 'react-html-parser'
-import '../App.css'
+import Entities from 'entities'
+import '../styling/App.css'
+import '../styling/SearchResults.css'
+
 
 class SearchResult extends Component {
   constructor (props) {
@@ -32,7 +34,7 @@ class SearchResult extends Component {
           }
 
 
-          <td>{ReactHtmlParser(entities.decodeHTML(this.props.textToDisplay))}</td>
+          <td>{ReactHtmlParser(Entities.decodeHTML(this.props.textToDisplay))}</td>
         </tr>
       </React.Fragment>
     )

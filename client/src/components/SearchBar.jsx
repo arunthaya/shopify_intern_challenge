@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import '../styling/App.css'
 import '../styling/SearchBarStyling.css'
+
 
 class SearchBar extends Component {
   constructor (props) {

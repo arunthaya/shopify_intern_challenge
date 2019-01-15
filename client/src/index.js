@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import './styling/Normalize.css'
-import './index.css'
+import './styling/Index.css'
 
 import * as serviceWorker from './serviceWorker'
 

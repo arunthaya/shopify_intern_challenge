@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import SearchResult from './SearchResult.jsx'
 import ThreeDots from '../images/ThreeDots.svg'
-import '../styling/SearchResults.css'
 
 class SearchResults extends Component {
   constructor (props) {
