@@ -144,7 +144,7 @@ class App extends Component {
       <div className="app">
         <div className="app-header">
           <header className="header" >
-            <h1>Toronto Waste Lookup Test</h1>
+            <h1>Toronto Waste Lookup</h1>
           </header>
           <SearchBar
             isBadInput={isBadInput}
