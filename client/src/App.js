@@ -63,6 +63,7 @@ class App extends Component {
         res => {
           let x = []
           x = res.body
+          console.log(res)
           if(res.body.length === 0){
             this.setState({
               results: [...x],
@@ -88,7 +89,10 @@ class App extends Component {
   fetchData = async () => {
     const response = await fetch(`/api/search?keywords=${this.state.searchField}`)
     const body = await response.json()
-    if (response.status !== 200) throw Error(body.message)
+    if (response.status !== 200) {
+      console.log(body)
+      throw Error(body.error)
+    }
     return body
   }
 

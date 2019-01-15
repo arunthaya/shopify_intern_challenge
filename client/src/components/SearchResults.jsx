@@ -20,7 +20,6 @@ class SearchResults extends Component {
         return <h3>{this.props.results.toString()}</h3>
       case 'isLoading':
         return <h3>Loading...</h3>
-        //<img className='loadingIcon' src={loadingIcon} alt='' />
       case 'results':
         return (
           <table className='Results-table'>
