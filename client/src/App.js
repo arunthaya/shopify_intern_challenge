@@ -13,17 +13,22 @@ class App extends Component {
     this.handleStarClick = this.handleStarClick.bind(this)
     this.handleKeyPress = this.handleKeyPress.bind(this)
     this.state = {
-      favourites: [],
-      favouritesVerbatim: [],
-      isBadInput: false,
-      prevSearch: '',
-      results: [],
-      searchField: '',
-      whatToRender: null
+      favourites: [], //favourites array storing indexes of items favourited
+      favouritesVerbatim: [], //stores the actual result object in this array
+      isBadInput: false, //if input submitted failed tests app doesn't send request
+      prevSearch: '', //app compares prevSearch to currentSearch to determine if request will be sent
+      results: [],  //arry that stores all results from a get request to server
+      searchField: '', //stores the input val from <input> html tag
+      whatToRender: null  //tells app to render error, loading, results, or no results
     }
   }
 
+  /**
+   * Function to render input box
+   * @param {String} text - Sets state to string captured from input
+   */
   handleInputChange(text){
+    console.log(text)
     this.setState(
       {searchField: text},
       () => {
@@ -36,6 +41,10 @@ class App extends Component {
     )
   }
 
+  /**
+   * Function to check if entered was hit on the input element
+   * @param {Object} e - Target element captured, reset isBadInput if user previously entered one, allowing program to check the input again
+   */
   handleKeyPress(e){
     if(e.keyCode === 13){
       this.handleInputSubmit()
@@ -46,14 +55,18 @@ class App extends Component {
     }
   }
 
+  /**
+   * Function to handle submit, checks to make sure input is not blank, or the same as previous search
+   * @param {String, String, Object} this.state - Make sure none of the fields are null or equal to each other
+   */
   handleInputSubmit(){
     const { searchField, prevSearch, results } = this.state;
     if (helpers.isSameSearch(searchField, prevSearch, results) === true){
       return this.setState({
-        isBadInput: true
+        isBadInput: true //same search or empty search
       })
     }
-    this.setState({
+    this.setState({ //otherwise change state to isLoading and begin fetch
       whatToRender: 'isLoading',
       prevSearch: searchField.trim()
     }, () => {
@@ -71,14 +84,17 @@ class App extends Component {
           } else {
             this.setState({
               results: [...x],
-              whatToRender: 'results'
+              whatToRender: 'results' //parse results to display
             })
           }
         })
-      .catch(err => this.setState({results: err, whatToRender: 'error'}))
+      .catch(err => this.setState({results: err, whatToRender: 'error'})) //catch error to display
     })
   }
 
+  /**
+   * Function to make get request to server address with words from input
+   */
   fetchData = async () => {
     const response = await fetch(`/api/search?keywords=${this.state.searchField}`)
     const body = await response.json()
@@ -88,11 +104,15 @@ class App extends Component {
     return body
   }
 
+  /**
+   * Function that compares star's id to an array of favourited stars, and either toggles star's favourite icon on or off
+   * @param {Object._id} val- This is used to compare ids with the results array, if favourited the result is added to the favourites array
+   */
   handleStarClick(val){
     let favouritesCopy = [...this.state.favourites];
     let favouritesVerbatimCopy = [...this.state.favouritesVerbatim];
     let index = favouritesCopy.indexOf(val);
-    if (index !== -1){
+    if (index !== -1){ //not favourited yet
       let favouriteVerbatimIndex = -1
       favouritesCopy.splice(index, 1)
       for(let i=0; i<favouritesVerbatimCopy.length; i++){
@@ -101,11 +121,11 @@ class App extends Component {
         }
       }
       favouritesVerbatimCopy.splice(favouriteVerbatimIndex, 1);
-      this.setState({
+      this.setState({ //add newly favourited result to favourites
         favourites: favouritesCopy,
         favouritesVerbatim: favouritesVerbatimCopy
       })
-    } else {
+    } else { //remove favourited object from favourites and return star color back to grey
       this.state.results
         .filter((result => result._id === val))
         .map((result) => {
@@ -128,9 +148,9 @@ class App extends Component {
           </header>
           <SearchBar
             isBadInput={isBadInput}
+            keyPress={this.handleKeyPress}
             onInputChange={this.handleInputChange}
             onSearchSubmit={this.handleInputSubmit}
-            keyPress={this.handleKeyPress}
             value={searchFieldText}
           />
         </div>

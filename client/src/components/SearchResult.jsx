@@ -4,7 +4,9 @@ import Entities from 'entities'
 import '../styling/App.css'
 import '../styling/SearchResults.css'
 
-
+/**
+ * Class used to generate each individual search result from results
+ */
 class SearchResult extends Component {
   constructor (props) {
     super(props)
@@ -32,8 +34,7 @@ class SearchResult extends Component {
               </td>
             )
           }
-
-
+          {/*Entities & ReactHtmlParser are used to safely decode html tags from result object and insert onto page*/}
           <td>{ReactHtmlParser(Entities.decodeHTML(this.props.textToDisplay))}</td>
         </tr>
       </React.Fragment>
@@ -42,5 +43,3 @@ class SearchResult extends Component {
 }
 
 export default SearchResult
-
-/* onClick={() => this.handleStarClick(this.props.id)} */

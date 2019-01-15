@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import SearchResult from './SearchResult.jsx'
 import ThreeDots from '../images/ThreeDots.svg'
 
+
+/**
+ * Class that encapsulates each individual searchresult 
+ *
+ */
 class SearchResults extends Component {
   constructor (props) {
     super(props)
@@ -13,6 +18,10 @@ class SearchResults extends Component {
     this.props.handleClick(identifier)
   }
 
+  /**
+   * Conditional render that will render based on the string entered
+   * @param {String} whatToRender - String passed as a prop from parent component
+   */
   conditionalRender (whatToRender) {
     switch (whatToRender) {
       case 'error':
@@ -26,7 +35,7 @@ class SearchResults extends Component {
               {this.props.results.map((result) =>
                 <SearchResult
                   key={result._id}
-                  favourited={!!this.props.favourites.includes(result._id)}
+                  favourited={this.props.favourites.includes(result._id)}
                   handleClick={this.handleStarClick}
                   title={result.title}
                   textToDisplay={result.body}

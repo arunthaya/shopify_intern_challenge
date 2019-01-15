@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import '../styling/App.css'
 import '../styling/SearchBarStyling.css'
 
+/**
+ * Class to render searchbar, self explanatory code
+ *
+ */
 
 class SearchBar extends Component {
   constructor (props) {
@@ -27,7 +31,7 @@ class SearchBar extends Component {
     const searchFieldText = this.props.value
     return (
       <div className='search'>
-        {this.props.isBadInput ? (
+        {this.props.isBadInput ? ( //change input background to red if bad input
           <input
             value={searchFieldText}
             onChange={this.handleChange}
@@ -41,11 +45,12 @@ class SearchBar extends Component {
             onKeyDown={this.handleKeyPress}
           />
         )}
-
           <button onClick={this.handleSubmit}>&#8981;</button>
       </div>
     )
   }
 }
+
+
 
 export default SearchBar
