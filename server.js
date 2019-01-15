@@ -17,7 +17,10 @@ let mongodb
  */
 log4js.configure({
   appenders: {
-    server: { type: 'stdout' }
+    server: { type: 'stdout', layout: {
+        type: 'pattern',
+        pattern: '%[ %p %c %m%n %]'
+    }}
   },
   categories: {
     default: { appenders: [ 'server' ], level: 'INFO' }
