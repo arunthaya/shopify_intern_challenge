@@ -43,6 +43,9 @@ yarn start
 ![Architecture](https://user-images.githubusercontent.com/25303677/51163681-7c255e80-1868-11e9-837a-1d3be4a0ef47.png)
 
 MVC - Model View Control pattern
-  - Model is MongoDB as the back-end
-  - Controller is Node.js
-  - View is React 
+  - The model is MongoDB as the back-end which stores the Toronto Waste Database resource as a .json file
+    - MongoDB was used as it is optimized for quick and easy text retrieval using the new text command
+    - The title and array of keywords are used as an index for quick retrieval
+    - Only certain elements are projected back to client for optimization
+  - Node.js is te controller that is used to route all API requests
+  - React is the View and will augment the client according to what the user clicks or types
