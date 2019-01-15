@@ -29,8 +29,12 @@
   border-color: black;
 }
 
-.error {
+.error{
   background-color: #F26E65;
+  border-color: red;
+}
+
+.error:focus {
   border-color: red;
 }
 
@@ -47,6 +51,7 @@
   max-width: 1.5em;
   outline: none;
   text-align: center;
+  line-height: inherit;
 }
 
 .search button:hover {
@@ -60,6 +65,7 @@
 @media screen and (max-width:600px) {
   .search {
     font-size: .5em;
+    line-height: inherit;
   }
   input {
     margin-right: 2%;
