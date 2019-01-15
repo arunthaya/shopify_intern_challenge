@@ -2,6 +2,8 @@
 
 This is my submission for the Shopify Web Engineer Internship Challenge. This web app allows users to quickly search the database to retrieve information regarding proper waste disposal. This web app uses React as a front-end framework and Node.js and MongoDB as the backend. I chose to use Node.js and MongoDB as a backend to showcase my ability to work with backends and make the frontend and backend communicate seamlessly.
 
+![Gif Recording](https://user-images.githubusercontent.com/25303677/51163075-83e40380-1866-11e9-9f22-78ca1f710e22.gif)
+
 [Hosted link]()
 ***
 
