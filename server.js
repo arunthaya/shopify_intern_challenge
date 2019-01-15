@@ -13,11 +13,11 @@ let mongodb
 
 
 /**
- * Configuring the log4js file to save content to an external file for later examination
+ * Configuring the log4js logger for better logging
  */
 log4js.configure({
   appenders: {
-    server: { type: 'file', filename: 'log.log' }
+    server: { type: 'stdout' }
   },
   categories: {
     default: { appenders: [ 'server' ], level: 'INFO' }

@@ -13,13 +13,13 @@ class App extends Component {
     this.handleStarClick = this.handleStarClick.bind(this)
     this.handleKeyPress = this.handleKeyPress.bind(this)
     this.state = {
-      searchField: '',
       favourites: [],
       favouritesVerbatim: [],
-      results: [],
+      isBadInput: false,
       prevSearch: '',
-      whatToRender: null,
-      isBadInput: false
+      results: [],
+      searchField: '',
+      whatToRender: null
     }
   }
 
@@ -77,12 +77,6 @@ class App extends Component {
         })
       .catch(err => this.setState({results: err, whatToRender: 'error'}))
     })
-  }
-
-  componentDidMount(){
-    if (!('indexedDB' in window)) {
-      console.log('This browser doesn\'t support IndexedDB')
-    }
   }
 
   fetchData = async () => {
@@ -143,10 +137,10 @@ class App extends Component {
         <div className="app-body">
           <div className="searchresults">
             <SearchResults
+              favourites={favourites}
+              handleClick={this.handleStarClick}
               results={results}
               whatToRender={whatToRender}
-              handleClick={this.handleStarClick}
-              favourites={favourites}
             />
           </div>
           <div className="favourites">
@@ -157,8 +151,8 @@ class App extends Component {
                 whatToRender={
                   favourites.length > 0 ? 'results' : null
                 }
-                handleClick={this.handleStarClick}
                 favourites={favourites}
+                handleClick={this.handleStarClick}
               />
             </div>
           </div>
