@@ -4,7 +4,7 @@ import ThreeDots from '../images/ThreeDots.svg'
 
 
 /**
- * Class that encapsulates each individual searchresult 
+ * Class that encapsulates each individual searchresult
  *
  */
 class SearchResults extends Component {
@@ -12,11 +12,17 @@ class SearchResults extends Component {
     super(props)
     this.handleStarClick = this.handleStarClick.bind(this)
     this.conditionalRender = this.conditionalRender.bind(this)
+    //this.handleClickTest = this.handleClickTest.bind(this)
   }
 
   handleStarClick (identifier) {
     this.props.handleClick(identifier)
   }
+
+  // handleClickTest(){
+  //
+  // }
+  /* https://github.com/facebook/react/issues/5674 */
 
   /**
    * Conditional render that will render based on the string entered

@@ -19,7 +19,7 @@ log4js.configure({
   appenders: {
     server: { type: 'stdout', layout: {
         type: 'pattern',
-        pattern: '%[ %p %c %m%n %]'
+        pattern: '%[ %p %c %m %]%n'
     }}
   },
   categories: {
@@ -87,10 +87,10 @@ app.get('/api/search', (req, res) => {
           console.log(`error connecting to MongoDB from req ${err}`)
           logger.error(err)
           response = { error: 'Error connecting to MongoDB'}
-          return setTimeout(() => res.status(500).send(response), 250) //delay by 250ms simulating real life server
+          return res.status(500).send(response) 
         }
         response = { body: result }
-        setTimeout(() => res.send(response), 250)
+        res.send(response)
       })
     } else {
       logger.fatal('Mongodb null, no connection initially established')
